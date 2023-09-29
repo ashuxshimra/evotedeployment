@@ -1,6 +1,7 @@
 import Banner from '@/components/Banner'
 import CreatePoll from '@/components/CreatePoll'
 import Footer from '@/components/Footer'
+import Login from '@/components/Login'
 import Navbar from '@/components/Navbar'
 import Polls from '@/components/Polls'
 import { getPolls } from '@/services/blockchain'
@@ -33,12 +34,8 @@ export default function Home({ pollsData }: { pollsData: PollStruct[] }) {
         />
 
         <section className="relative px-5 py-10 space-y-16 text-white sm:p-10">
-          <Navbar />
-          <Banner />
-          <Polls polls={polls} />
-          <Footer />
+          <Login/>
         </section>
-        <CreatePoll />
       </div>
     </>
   )

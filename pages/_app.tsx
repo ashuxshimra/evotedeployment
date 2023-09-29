@@ -6,11 +6,11 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useEffect, useState } from 'react'
 import { checkWallet } from '@/services/blockchain'
-import CometChatNoSSR from '@/components/CometChatNoSSR'
+import { SessionProvider } from "next-auth/react"
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   const [showChild, setShowChild] = useState<boolean>(false)
-  
+
   useEffect(() => {
     checkWallet()
     setShowChild(true)
@@ -21,8 +21,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   } else {
     return (
       <Provider store={store}>
-        {/* <CometChatNoSSR /> */}
-        <Component {...pageProps} />
+        <SessionProvider>
+          <Component {...pageProps} />
+        </SessionProvider>
 
         <ToastContainer
           position="bottom-center"
@@ -40,3 +41,5 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     )
   }
 }
+
+export default MyApp
